@@ -30,7 +30,7 @@ namespace HeroPerk
                         break;
                     default:
                         unknownPerk = true;
-                        Console.WriteLine("Unknown perk!");
+                        Console.WriteLine("!Unknown perk!");
                         break;
                 }
             }
@@ -48,13 +48,19 @@ namespace HeroPerk
             // If no perks were selected, display a message
             else
             {
-                Console.WriteLine("No perks at all!");
+                Console.WriteLine("!No perks at all!");
             }
-            
-            // If the selected perks are Stealth and DoubleJump, display a message
+
+            // If the selected perks are Stealth and DoubleJump = Silent jumper!
             if ((selectedPerk & Perks.Stealth) != 0 && (selectedPerk & Perks.DoubleJump) != 0)
             {
-                Console.WriteLine("Silent jumper!");
+                Console.WriteLine("!Silent jumper!");
+            }
+
+            // If the player does not have the AutoHeal = Not gonna make it!
+            if ((selectedPerk & Perks.AutoHeal) == 0)
+            {
+                Console.WriteLine("!Not gonna make it!");
             }
         }
     }
