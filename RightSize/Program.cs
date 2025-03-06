@@ -15,6 +15,17 @@ namespace RightSize
                     Console.WriteLine(s);
                 }
             } 
+
+            // If the argument in cmd is bigger than 8 print "EARLY STOP"
+            // Stop the program
+            foreach (string s in args)
+            {
+                if (s.Length > 8)
+                {
+                    Console.WriteLine("EARLY STOP");
+                    return;
+                }
+            }
         }
     }
 }
