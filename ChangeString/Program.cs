@@ -14,6 +14,19 @@ namespace ChangeString
             Console.WriteLine("Enter a character:");
             char character = Console.ReadKey().KeyChar;
             Console.WriteLine();
+
+            // Print the string replacing x with the character inputed
+            foreach (char c in input)
+            {
+                if (c == 'x')
+                {
+                    Console.Write(character);
+                }
+                else
+                {
+                    Console.Write(c);
+                }
+            }
         }
     }
 }
