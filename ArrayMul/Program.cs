@@ -23,18 +23,18 @@ namespace ArrayMul
 
             // Matrix B2x1 as float
             // User provides the values for the matrix in cmd
-            float[,] matrixB = {
+            float[,] vectorB = {
                 { float.Parse(args[4], CultureInfo.InvariantCulture) },
                 { float.Parse(args[5], CultureInfo.InvariantCulture) }
             };
 
             // Multiply A2x2 by B2x1
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++) // Goes through the rows of matrix A
             {
-                float result = 0;
-                for (int j = 0; j < 2; j++)
+                float result = 0; // Initialize the result
+                for (int j = 0; j < 2; j++) // Goes through the columns of matrix A
                 {
-                    result += matrixA[i, j] * matrixB[j, 0];
+                    result += matrixA[i, j] * vectorB[j, 0]; // Multiply the values and add to the result
                 }
                 Console.WriteLine(result);
             }
