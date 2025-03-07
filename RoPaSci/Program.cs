@@ -6,44 +6,59 @@ namespace RoPaSci
     {
         private static void Main(string[] args)
         {
-            int result = RockPaperScissors(args[0], args[1]);
+            // Ask the user to input Rock, Paper or Scissors
+            Console.WriteLine("Player 1, enter Rock, Paper or Scissors:");
+            string player1Input = Console.ReadLine();
+
+            // Ask the user to input Rock, Paper or Scissors
+            Console.WriteLine("Player 2, enter Rock, Paper or Scissors:");
+            string player2Input = Console.ReadLine();
+
+            // Convert the input to the GameItem enum
+            GameItem player1 = Enum.Parse<GameItem>(player1Input, true);
+            GameItem player2 = Enum.Parse<GameItem>(player2Input, true);
+            
+            // Call the RockPaperScissors method and store the result in a variable
+            GameStatus result = RockPaperScissors(player1, player2);
+
+            // Use a switch statement to print the result
             switch (result)
             {
-                case 0:
-                    Console.WriteLine("It's a draw!");
-                    break;
-                case 1:
+                case GameStatus.Player1Wins:
                     Console.WriteLine("Player 1 wins!");
                     break;
-                case 2:
+                case GameStatus.Player2Wins:
                     Console.WriteLine("Player 2 wins!");
                     break;
+                case GameStatus.Draw:
+                    Console.WriteLine("It's a draw!");
+                    break;
             }
+
         }
 
         private static GameStatus RockPaperScissors(GameItem player1, GameItem player2)
         {
-            // Store result in a variable to return it at the end
-            int result;
+            GameStatus result = GameStatus.Draw; // Initialize the as Draw by default
 
             if (player1 == player2)
             {
-                result = 0; // Draw
+                return GameStatus.Draw; // Draw
             }
 
-            // else if ensures that the program will not check the other conditions if one is true
-            else if  ((player1 & GameItem.Rock) !=0 && (player2 & GameItem.Scissors) !=0 ||
-                (player1 & GameItem.Scissors) !=0 && (player2 & GameItem.Paper) !=0 ||
-                (player1 & GameItem.Paper) !=0 && (player2 & GameItem.Rock) !=0)
+            // Check the winning conditions
+            // Rock beats Scissors, Scissors beats Paper, Paper beats Rock
+            if ((player1 == GameItem.Rock && player2 == GameItem.Scissors) ||
+                     (player1 == GameItem.Scissors && player2 == GameItem.Paper) ||
+                     (player1 == GameItem.Paper && player2 == GameItem.Rock))
             {
-                result = 1; // Player 1 wins
+                return GameStatus.Player1Wins; // Player 1 wins
             }
+            
             else
             {
-                result = 2; // Player 2 wins
+                return GameStatus.Player2Wins; // Player 2 wins
             }
-
-            return result; // Return the result
         }
     }
 }

@@ -1,9 +1,0 @@
-using System;
-namespace GameStatus
-
-public enum GameStatus
-{
-    Player1Win,
-    Player2Win,
-    Draw
-}
