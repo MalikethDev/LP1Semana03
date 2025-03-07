@@ -21,7 +21,7 @@ namespace RoPaSci
             }
         }
 
-        private static int RockPaperScissors(string player1, string player2)
+        private static GameStatus RockPaperScissors(GameItem player1, GameItem player2)
         {
             // Store result in a variable to return it at the end
             int result;
@@ -30,9 +30,11 @@ namespace RoPaSci
             {
                 result = 0; // Draw
             }
-            if (((player1 == "Rock") && (player2 == "Scissors")) ||
-                ((player1 == "Scissors") && (player2 == "Paper")) ||
-                ((player1 == "Paper") && (player2 == "Rock")))
+
+            // else if ensures that the program will not check the other conditions if one is true
+            else if  ((player1 & GameItem.Rock) !=0 && (player2 & GameItem.Scissors) !=0 ||
+                (player1 & GameItem.Scissors) !=0 && (player2 & GameItem.Paper) !=0 ||
+                (player1 & GameItem.Paper) !=0 && (player2 & GameItem.Rock) !=0)
             {
                 result = 1; // Player 1 wins
             }
